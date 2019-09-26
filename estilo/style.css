@@ -1,0 +1,452 @@
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box; /*Faz com que o padding não altere o tamanho da sessao*/
+	font-family: "Open Sans";
+}
+/**Boot CSS - Classes padrões**/
+
+html, body{
+	/*overflow-x: hidden; Da problema no jquery para scroll bar*/
+	height: 100%;
+}
+
+input{
+	border: 0;/*Porque alguns navegadores tipo o internet explorer colocam bordas sozinhos*/
+}
+
+img{
+	width: 100%;
+	max-width: 400px;
+}
+.center{
+	max-width: 1280px;
+	padding: 0 10px;
+	margin:0 auto;
+}
+.w33{
+	/*Para quanto tiver três itens em uma fileira*/
+	width: 33.3%;
+	padding:0 10px;
+}
+
+.w50{
+	padding: 0 10px;
+	width:50%;
+}
+
+.left{
+	float:left;
+}
+.right{
+	float: right;
+}
+
+.clear{
+	/*Limpa as fluatuações. Após usar flutuação o navegador de deixa de calcular o tamanho do elemento. 
+	Para que possa calcular novamente temos que limpar.*/
+	clear:both;
+}
+/*Estilização do site*/
+header .logo{
+	font-size: 25px;
+	font-weight: 300;
+	text-transform: uppercase;
+}
+
+.logo a{
+	text-decoration: none;
+	color: white;
+}
+
+header{
+	padding: 20px 0; /*Primeiro valor cima baixo, segundo valor direita esquerda*/
+	background: #3D437A;
+}
+.mobile{
+	display: none;/*Deixa de visualizar esse campo*/
+}
+
+nav.desktop ul{
+	position: relative; /*Diz que a ul deve se relacionar com ela mesma*/
+	top:6px;/*Faz com que a ul coloque uma margem no topo em relação a ela mesma de 6px*/
+	list-style-type: none; /*Faz sumir as bolinhas de marcação da lista*/
+}
+
+nav.desktop li{
+	font-weight: 300;
+	font-size: 15px;
+	padding: 0 30px; /*O padding sup e inf é 0 e o dir e esq é de 30px*/
+	text-transform: uppercase; /*Faz tudo ficar maiúsculo*/
+	display: inline-block; /*Deixa a lista lado a lado*/
+}
+
+nav.desktop a{
+	color:white;
+	text-decoration: none;
+}
+
+section.banner-container{
+	width: 100%;
+	height: 600px;
+	background-size: cover; /*Informa que a imagem deve
+	cobrir toda tela*/
+	position: relative;/*Faz com que esse elemento sirva de referência a imagem que será posicionado acima dela
+	nessa caso o background contida pela classe .overlay*/
+}
+
+.banner-single{
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background-size: cover;/*Cobrir tela toda*/
+	background-position: center;
+	z-index: 1;
+}
+
+.overlay{
+	position: absolute;/*Desloca-se em relação ao banner principal que está como position:relative*/
+	left:0;/*Propriedades de uso exclusivo para o position*/
+	top: 0;/*Propriedades de uso exclusivo para o position*/
+	width: 100%;
+	height:100%;
+	z-index: 2;/*Garante que a imagem mais escura colocada fique na frente do banner-principal*/
+	background-color:rgba(51,51,51,0.7);
+}
+
+section.banner-container form{
+	width: 93%;
+	max-width: 600px;
+	z-index: 3;/*Faz com que o formulário vá para a primeira camada do site. Na prática ele não será coberto por 
+	nenhuma imagem.*/
+	position: absolute;/*Vai se relacionar com o section.banner-principal que está como position:relative*/
+	left: 50%;
+	top:50%;
+	/*Técnica de CSS3 para centralizar e já deixar
+	responsivo*/
+	transform:translate(-50%,-50%);/*Desloca o elemento form -50% em x da posição atual e -50% em y*/
+	-ms-transfom:translate(-50%,-50%);/*Não ficou claro o uso pois testei sem ele e funcionou normalmente. 
+	A minha teoria é que ele seja usado por outro navegador*/
+}
+
+section.banner-container form h2{
+	color: white;
+	font-weight: 300;
+	font-size: 30px;
+	text-align: center;
+}
+
+section.banner-container form input[type=email]{/*Se não fosse especfificado o tipo do input todos seriam afetados*/
+	width: 100%;
+	height: 66px;
+	margin-top: 10px;
+	background: white;
+	color: #333;
+	font-size: 22px;
+	padding-left: 10px;
+}
+
+section.banner-container form input[type=submit]{
+	width: 100%;
+	height: 66px;
+	margin-top: 10px;
+	background: #00C59E;
+	color: #333;
+	font-size: 22px;
+	padding-left: 10px;
+	cursor: pointer;
+	font-size: 22px;
+	border: 0;
+}
+
+section.descricao-autor{
+	padding:40px 0;
+}
+
+section.descricao-autor h2{
+	font-size: 28px;
+	font-weight: 300;
+	color: #444;
+}
+
+section.descricao-autor p{
+	font-size: 16px;
+	color: #444;
+	margin-top: 10px;
+	font-weight: 300;
+}
+
+section.especialidades{
+	padding: 40px 0;
+	background: #E2E2E2;
+}
+
+section.especialidades h2.title{
+	font-size: 30px;
+	font-weight: 400;
+	color: #999;
+	text-align: center;
+}
+
+.box-especialidades{
+	margin: 40px 0;
+	padding: 0 30px;
+	text-align: center;
+}
+
+.box-especialidades h3{
+	color: #404580;
+	font-size: 40px;
+}
+
+.box-especialidades h4{
+	font-weight: 300;
+	font-size: 25px;
+	color: #BABABA;
+}
+
+.box-especialidades p{
+	color: #444;
+	font-size: 15px;
+	margin-top: 10px;
+}
+
+section.extras{
+	padding: 30px 0;
+	background: #404580;
+
+}
+
+section.extras .title{
+	color: white;
+	font-weight: 300;
+	font-size: 25px;
+	margin-bottom: 15px;
+}
+
+.depoimentos-container, .servicos-container{
+	padding: 0 50px;
+	width: 50%;
+}
+
+.depoimento-single{
+	padding: 15px 0;
+	border-bottom: 1px solid #5056A0;
+
+}
+
+p.depoimento-descricao{
+	font-size: 15px;
+	color: white;
+	font-weight: 300;
+}
+
+p.nome-autor{
+	font-size: 15px;
+	color: white;
+	font-weight: bold
+	margin-top:5px;
+}
+
+.servicos ul{
+	margin:20px 0;
+}
+
+.servicos li{
+	margin-bottom: 15px;
+	font-size: 15px;
+	color: white;
+	font-weight: 300;
+}
+
+footer{
+	background-color: #313462;
+	padding: 30px 0;	
+}
+
+footer.fixed{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+footer p{
+	color: white;
+	text-align: center;
+	font-weight: 400;
+	font-size: 16px;
+}
+
+section.erro-404{
+	min-height: 600px;
+	padding: 70px 0;
+}
+
+section.erro-404 h2{
+	text-align: center;
+	color: #444;
+	font-weight: 400;
+	border-bottom: 2px solid #444;
+	font-size: 28px;
+}
+
+section.erro-404 p{
+	margin-top: 8px;
+	text-align: center;
+	font-size: 16px;
+	color: #444;
+	font-weight: 300;
+}
+
+section.erro-404 a{
+	color: #444;
+}
+
+#map{
+	width: 100%;
+	height: 400px;
+}
+
+.contato-container{
+	padding: 40px 0;
+	text-align: center;
+}
+
+.contato-container input[type=text]{
+	margin: 8px 0;
+	width: 100%;
+	height: 40px;
+	padding-left: 8px;
+	font-size: 16px;
+	max-width: 800px;
+	color: #444;
+	border: 1px solid #ccc;
+}
+
+.contato-container textarea{
+	padding: 8px;
+	margin: 8px 0;
+	width: 100%;
+	height: 120px;
+	padding-left: 8px;
+	font-size: 16px;
+	max-width: 800px;
+	color: #444;
+	resize: vertical;
+	border: 1px solid #ccc
+}
+
+.contato-container input[type=submit]{
+	width: 100%;
+	max-width: 800px;
+	cursor: pointer;
+	height: 40px;
+	padding: 10px 0;
+	background-color: #3CB371;
+	text-transform: uppercase;
+	font-size: 16px;
+	color: white;
+	font-weight:400;
+	text-align: center;
+	padding: 10px 0;
+}
+
+.bullets{
+	position: absolute;
+	z-index: 5;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.bullets span{
+	margin: 0 10px;
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	cursor: pointer;
+	background-color: #444;
+
+}
+
+.bullets span.active-slider{
+	background:white;
+}
+
+
+
+/*Aplicando desing responsivo*/
+@media screen and (max-width: 768px){
+	img{
+		float: none !important;/*o parâmetro important
+		é necessário para sobreescrever a regra das img's
+		pois pelo html estas estão pegando a regra right.
+		Quando usamos o !important reescrevemos a regra*/
+		display: block;/*Transforma img em elemento bloco*/
+		margin: 0 auto;
+		max-width: 500px;/*tamanho max da img*/
+
+	}
+
+	.w50{
+		/*Para a tela que possui divisão de 50%. Quando
+		a tela do dispositivo for menor que 768px deixe
+		a tela com largura de 100%*/
+		padding: 20px;
+		width: 100%;
+	}
+
+	.w33{
+		padding: 20px;
+		width: 100%;
+	}
+
+	.box-especialidades{
+		padding: 40px 20px;
+		margin:0;
+	}
+}
+
+@media screen and (max-width: 700px){
+	nav.desktop{
+		display: none;/*Com esse parâmetro o texto contido
+		na classe .desktop é excluido do html*/
+	}
+	nav.mobile{
+		display: block;
+	}
+	.botao-menu-mobile{
+		font-size: 24px;
+		cursor: pointer;
+		color: white;
+	}
+	nav.mobile ul{
+		top: 55px;
+		z-index: 3;
+		position: absolute;/*Investigar em relação a quem
+		a ul vai se relacionar*/
+		left: 0;
+		display: none;/*Dps verificar o que isso faz no cod*/
+		text-align: center;
+		width: 100%;
+	}
+
+	nav.mobile li{
+		font-weight: 300;
+		width: 100%;
+		display: block;
+		background: white;
+		border-bottom: 1px solid #ccc;
+		font-size: 17px;
+		padding: 8px 0;
+	}
+	nav.mobile li a{
+		display: block; /*Se não só seria clicavel 
+		em cima do nome.*/
+		color: #444;
+		text-decoration: none;
+	}
+}
