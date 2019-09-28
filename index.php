@@ -36,7 +36,7 @@
 					<li><a href="<?php echo INCLUDE_PATH;?>">Home</a></li>
 					<li><a href="<?php echo INCLUDE_PATH;?>depoimentos">Depoimentos</a></li>
 					<li><a href="<?php echo INCLUDE_PATH;?>servicos">Serviços</a></li>
-					<li><a href="<?php echo INCLUDE_PATH;?>contato">Contato</a></li>
+					<li><a realtime="contato" href="<?php echo INCLUDE_PATH;?>contato">Contato</a></li>
 				</ul>
 			</nav>
 
@@ -49,36 +49,37 @@
 					<li><a href="<?php echo INCLUDE_PATH;?>">Home</a></li>
 					<li><a href="<?php echo INCLUDE_PATH;?>depoimentos">Depoimentos</a></li>
 					<li><a href="<?php echo INCLUDE_PATH;?>servicos">Serviços</a></li>
-					<li><a href="<?php echo INCLUDE_PATH;?>contato">Contato</a></li>
+					<li><a realtime href="<?php echo INCLUDE_PATH;?>contato">Contato</a></li>
 				</ul>
 			</nav>
 			<div class="clear"></div><!--Entendi agora porque limpar após usar a flutuação. Pois depois que usar a altura não é mais calculada, dai a estilização não pega. -->
 		</div><!--Center -->
 
 	</header>
+		<div class="container-principal">
+		<?php
+			/*
 
-	<?php
-		/*
-
-			Carregando as páginas dinâmicamente. Isso só funciona por causa do arquivo .htaccess
-			que permite que a gente capture o que digitado na url e/ou no momento do clique no link
-			presente no header.
-		*/ 
-		//Se dentro da pasta pages existir um arquivo com o nome da variavel url inclua esse arquivo, se não chama a pagina 404
-		if(file_exists('pages/'.$url.'.php')){
-			include('pages/'.$url.'.php');
-		}else{
-			//Podemos fazer o que quiser, pois a pagina nao existe
-			if($url != 'depoimentos' && $url !='servicos'){
-				$pagina404 = true;
-				include('pages/404.php');
+				Carregando as páginas dinâmicamente. Isso só funciona por causa do arquivo .htaccess
+				que permite que a gente capture o que digitado na url e/ou no momento do clique no link
+				presente no header.
+			*/ 
+			//Se dentro da pasta pages existir um arquivo com o nome da variavel url inclua esse arquivo, se não chama a pagina 404
+			if(file_exists('pages/'.$url.'.php')){
+				include('pages/'.$url.'.php');
+			}else{
+				//Podemos fazer o que quiser, pois a pagina nao existe
+				if($url != 'depoimentos' && $url !='servicos'){
+					$pagina404 = true;
+					include('pages/404.php');
+				}
+				else{
+					include('pages/home.php');
+				}
+				
 			}
-			else{
-				include('pages/home.php');
-			}
-			
-		}
-	?>
+		?>
+	</div><!--F-->
 	
 	<footer <?php if(isset($pagina404) && $pagina404==true) echo 'class=fixed';?>>
 		<div class="center">
