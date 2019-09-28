@@ -18,7 +18,14 @@ $(function(){
 			se pegar o class banner-container iria pegar tudo dentro 
 			da section banner-container*/
 			var content = $('.bullets').html();
-			content += '<span></span>';
+			$('.bullets').html(content);//Adiciona o valor de content dentro do html
+			if(i == 0){
+				content += '<span class="active-slider"></span>';
+				//$('.bullets').html(content);
+			}
+			else{
+				content += '<span></span>';
+			}
 			$('.bullets').html(content);
 		}
 	}
@@ -44,6 +51,26 @@ $(function(){
 				curSlide = 0;
 			}
 			$('.banner-single').eq(curSlide).fadeIn(2000);
+			//Trocar bullets da navegação do slider!
+			$('.bullets span').removeClass('active-slider');//Garante que apenas um bullet vai ter a classe
+			$('.bullets span').eq(curSlide).addClass('active-slider');
 		},delay * 1000);
 	}
+
+	/*
+	Funciona caso o elemento já exista
+	$('.bullets span').click(function(){
+		alert('Clicado');
+	})*/
+
+	//Caso o elemento seja adicionado depois melhor usar essa forma:
+	//O método on parâmetros: evento, classe, função para o que vai acontecer
+	$('body').on('click', '.bullets span', function(){
+		var currentBullet = $(this); //O this refere-se ao objeto clicado
+		$('.banner-single').eq(curSlide).fadeOut(2000);
+		curSlide = currentBullet.index();//Captura a ordem do bullet que foi clicado
+		$('.banner-single').eq(curSlide).fadeIn(2000);//Mostra o bullet clicado
+		$('.bullets span').removeClass('active-slider');
+		currentBullet.addClass('active-slider');
+	});
 })
