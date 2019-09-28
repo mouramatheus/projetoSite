@@ -45,12 +45,16 @@ $(function(){
 			para animação acontecer
 
 			*/
-			$('.banner-single').eq(curSlide).fadeOut(2000);
+			/*
+			A função stop() vai parar todas as animações, assim evita que caso ocorra a navegação
+			entre os slides a transição ocorra de maneira muito rápida
+			*/
+			$('.banner-single').eq(curSlide).stop().fadeOut(1000);
 			curSlide++;
 			if(curSlide > maxSlide){
 				curSlide = 0;
 			}
-			$('.banner-single').eq(curSlide).fadeIn(2000);
+			$('.banner-single').eq(curSlide).fadeIn(1000);
 			//Trocar bullets da navegação do slider!
 			$('.bullets span').removeClass('active-slider');//Garante que apenas um bullet vai ter a classe
 			$('.bullets span').eq(curSlide).addClass('active-slider');
@@ -67,7 +71,7 @@ $(function(){
 	//O método on parâmetros: evento, classe, função para o que vai acontecer
 	$('body').on('click', '.bullets span', function(){
 		var currentBullet = $(this); //O this refere-se ao objeto clicado
-		$('.banner-single').eq(curSlide).fadeOut(2000);
+		$('.banner-single').eq(curSlide).stop().fadeOut(2000);
 		curSlide = currentBullet.index();//Captura a ordem do bullet que foi clicado
 		$('.banner-single').eq(curSlide).fadeIn(2000);//Mostra o bullet clicado
 		$('.bullets span').removeClass('active-slider');
